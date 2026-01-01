@@ -3,16 +3,13 @@ import { useNavigate } from "react-router-dom"
 function Home() {
     const navigate = useNavigate()
 
-    const openInventory = (e) => {
-        navigate("\inventory")
-    }
   return (
     <>
         <div>
             <button>
                 cookbook
             </button>
-            <button onClick={() => navigate("\inventory")}>
+            <button onClick={() => navigate("\\inventory")}>
                 pantry
             </button>
             <button>
