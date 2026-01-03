@@ -1,6 +1,7 @@
 const pg = require('pg');
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 
 // db connection pool setup
 const { Pool } = pg;
@@ -15,6 +16,7 @@ const pool = new Pool({
 const app = express();
 
 // middle ware
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -32,10 +34,14 @@ app.listen(PORT, () => {
  *                   PANTRY ROUTES                   *
  *****************************************************/
 app.get('/pantry', (req, res) => {
-    pool.query('SELECT * FROM pantry_items', (err, res) => {
-        if (err) {console.error(err)};
-    })
-    res.json(res.rows);
+    console.log('get hit')
+  pool.query('SELECT * FROM pantry_items').then(
+    response => {
+        console.log(response)
+        res.json(response.rows);  
+    }).catch((err) => {
+        console.error(err)
+    });
 });
 
 app.post('/pantry', (req, res) => {

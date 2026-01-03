@@ -9,7 +9,7 @@ function Home() {
             <button>
                 cookbook
             </button>
-            <button onClick={() => navigate("\\inventory")}>
+            <button onClick={() => navigate('/inventory')}>
                 pantry
             </button>
             <button>
