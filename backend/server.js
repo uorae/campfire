@@ -55,6 +55,18 @@ app.post('/pantry', (req, res) => {
     res.json();
 });
 
+app.get('/pantry/:id', (req, res) => {
+    console.log('get hit')
+  pool.query('SELECT * FROM pantry_items WHERE item_id=${id}').then(
+    response => {
+        console.log(response)
+        res.json(response.rows);  
+    }).catch((err) => {
+        console.error(err)
+    });
+});
+
+
 app.delete('/pantry/:id', (req, res) => {
     const id = parseInt(req.params.id);
     pool.query(`DELETE FROM pantry_items WHERE item_id=${id}`, (err, res) => {
