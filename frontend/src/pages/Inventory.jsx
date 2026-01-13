@@ -3,16 +3,21 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 
 import NewItemForm from "../components/NewItemForm"
+import { useNavigate } from "react-router-dom"
 
 function Inventory() {
+  const navigate = useNavigate()
   const [isAdding, setIsAdding] = useState(false)
   const [items, setItems] = useState([])
+  const [selectedItem, setSelectedItem] = useState({})
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
         const response = await axios.get('http://localhost:3000/pantry')
         setItems(response.data)
+        setSelectedItem(response.data[0])
+        console.log(response.data[0])
       } catch (err) {
         console.error(err)
       }
@@ -55,7 +60,13 @@ function Inventory() {
 
     <div>
       {/* right: item info */}
+      {selectedItem.item_name}
+      {selectedItem.quantity}
     </div>
+
+    <button onClick={() => navigate('/')}>
+      back
+    </button>
     </>
   )
 }

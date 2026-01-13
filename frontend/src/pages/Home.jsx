@@ -6,13 +6,13 @@ function Home() {
   return (
     <>
         <div>
-            <button>
+            <button onClick={() => navigate('/cookbook')}>
                 cookbook
             </button>
             <button onClick={() => navigate('/inventory')}>
                 pantry
             </button>
-            <button>
+            <button onClick={() => navigate('/shopping')}>
                 shopping list
             </button>
         </div>
