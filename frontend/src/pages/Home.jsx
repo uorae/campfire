@@ -19,6 +19,7 @@ function Home() {
         <div>
             <button>
                 generate recipes
+                {/* select from recipes where  all ingredients are in pantry (intersect) */}
             </button>
         </div>
     </>

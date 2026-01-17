@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom"
 
 function Inventory() {
   const navigate = useNavigate()
-  const [isAdding, setIsAdding] = useState(false)
   const [items, setItems] = useState([])
   const [selectedItem, setSelectedItem] = useState({})
 
@@ -26,15 +25,10 @@ function Inventory() {
     fetchItems()
   }, [])
 
-  const onAdd = () => {
-    console.log(isAdding)
-    setIsAdding(true)
-  }
-
   return (
     <>
-    <div>
-      <div>
+    <div className="flex w-full">
+      <div className="card bg-base-300 rounded-box grid h-20 grow place-items-center">
         <h2>Pantry Items</h2>
 
         {items.length === 0 ? (
@@ -48,20 +42,23 @@ function Inventory() {
             ))}
           </ul>
         )}
+
+        {/* left: pantry item list */}
+        <NewItemForm />
       </div>
-      {/* left: pantry item list */}
-      <button onClick={onAdd}>
-        + add item
-      </button>
-
-    </div>
-
-    <NewItemForm state={isAdding} />
-
-    <div>
-      {/* right: item info */}
-      {selectedItem.item_name}
-      {selectedItem.quantity}
+      <div className="divider divider-horizontal"></div>
+      <div>
+        <div className="card bg-base-100 w-96 shadow-sm">
+          {/* right: item info */}
+          <div className="card-body">
+            <h2 className="card-title">{selectedItem.item_name}</h2>
+            <p>quantity: {selectedItem.quantity}</p>
+            <div className="card-actions justify-end">
+              <button className="btn btn-primary">Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <button onClick={() => navigate('/')}>
