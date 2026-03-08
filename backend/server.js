@@ -2,6 +2,7 @@ const pg = require('pg');
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const axios = require('axios');
 
 const { Pool } = pg;
 const pool = new Pool({
@@ -79,5 +80,27 @@ app.delete('/clear/pantry', (req, res) => {
 
 // GET /recipes — coming soon
 app.get('/recipes', (req, res) => {
-    res.json({ message: 'coming soon' });
+
+    pool.query(
+        `SELECT ingredients.name 
+         FROM pantry_items 
+         JOIN ingredients ON pantry_items.ingredient = ingredients.id`
+    )
+    .then(result => {
+        const ingredientList = result.rows.map(row => row.name).join(',');
+
+        return axios.get('https://api.spoonacular.com/recipes/findByIngredients', {
+            params: {
+                ingredients: ingredientList,
+                number: 10,
+                ranking: 1,
+                apiKey: process.env.SPOONACULAR_API_KEY
+            }
+        });
+    })
+    .then(response => {
+        // id, title, image, usedIngredients, missedIngredients, likes
+        res.json(response.data);
+    })
+    .catch(err => res.status(500).json({ error: err.message }));
 });
