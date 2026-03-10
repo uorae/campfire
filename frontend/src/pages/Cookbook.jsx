@@ -1,12 +1,24 @@
-import { useNavigate } from "react-router-dom"
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
-function Cookbook() {
+export default function Recipes() {
     const navigate = useNavigate()
-    return <>
-        <button onClick={() => navigate('/')}>
-            back
-        </button>
-    </>
-}
+    const [recipes, setRecipes] = useState([])
+    const [loading, setLoading] = useState(true)
 
-export default Cookbook
+    useEffect(() => {
+      axios.get(`http://localhost:${import.meta.env.VITE_BACKEND_PORT}/recipes`)
+        .then(res => setRecipes(res.data))
+        .catch(err => console.error(err))
+        .finally(() => setLoading(false))
+    }, [])
+
+    return (
+      <>
+        <button onClick={() => navigate('/')}>
+          ← back
+        </button>
+      </>
+    )
+}

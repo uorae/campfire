@@ -8,7 +8,6 @@ function Inventory() {
   const navigate = useNavigate()
   const [items, setItems] = useState([])
   const [input, setInput] = useState("")
-  const [selectedItem, setSelectedItem] = useState({})
   const [loading, setLoading] = useState(false)
 
   const fetchItems = () => {
