@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 
 import './App.css'
 import Home from './pages/Home'
-import Inventory from './pages/Inventory'
-import Cookbook from './pages/Cookbook'
-import ShoppingList from './pages/ShoppingList'
+import Pantry from './pages/Inventory'
+import Recipes from './pages/Cookbook'
+
 
 function App() {
 
@@ -15,9 +15,9 @@ function App() {
       
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/inventory' element={<Inventory />} />
-          <Route path='/cookbook' element={<Cookbook />} />
-          <Route path='/shopping' element={<ShoppingList />} />
+          <Route path='/pantry' element={<Pantry />} />
+          <Route path='/recipes' element={<Recipes />} />
+          {/* <Route path='/recipes/:id' element={<RecipeDetail />} /> */}
         </Routes>
       </BrowserRouter>
     </>
