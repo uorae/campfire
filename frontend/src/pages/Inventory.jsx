@@ -60,9 +60,11 @@ function Inventory() {
   return (
     <>
       <div className="w-full max-w-md">
-        <button onClick={() => navigate('/')}>
+        <a className="link link-hover"
+          onClick={() => navigate('/')}
+        >
           ← back
-        </button>
+        </a>
 
         <h1>inventory</h1>
     

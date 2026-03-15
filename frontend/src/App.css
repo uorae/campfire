@@ -1,7 +1,5 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes: lemonade --default, coffee --prefersdark;
-}
+@plugin "daisyui";
 
 #root {
   max-width: 1280px;

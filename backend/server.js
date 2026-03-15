@@ -91,7 +91,7 @@ app.get('/recipes', (req, res) => {
     return axios.get('https://api.spoonacular.com/recipes/findByIngredients', {
       params: {
         ingredients: ingredientList,
-        number: 10,
+        number: 12,
         ranking: 1,
         apiKey: process.env.SPOONACULAR_API_KEY
       }
@@ -107,7 +107,7 @@ app.get('/recipes', (req, res) => {
 // GET /recipes/:id
 app.get('/recipes/:id', (req, res) => {
   axios.get(`https://api.spoonacular.com/recipes/${req.params.id}/information`, {
-    params: { apiKey: process.env.SPOONACULAR_KEY }
+    params: { apiKey: process.env.SPOONACULAR_API_KEY }
   })
   .then(response => res.json(response.data))
   .catch(err => res.status(500).json({ error: err.message }));

@@ -11,13 +11,13 @@ function Home() {
 			<div className="flex flex-row gap-4 mt-8">
 				<button
 					className="btn btn-primary btn-lg"
-					onClick={() => navigate('/pantry')}
+					onClick={() => navigate('/inventory')}
 				>
 					inventory
 				</button>
 				<button
 					className="btn btn-secondary btn-lg"
-					onClick={() => navigate('/recipes')}
+					onClick={() => navigate('/cookbook')}
 				>
 					cookbook
 				</button>
