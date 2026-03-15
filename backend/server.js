@@ -99,6 +99,7 @@ app.get('/recipes', (req, res) => {
   })
   .then(response => {
     // id, title, image, usedIngredients, missedIngredients, likes
+    response.data.sort((a, b) => a.missedIngredientCount - b.missedIngredientCount); // sort by missed ingredients asc
     res.json(response.data);
   })
   .catch(err => res.status(500).json({ error: err.message }));

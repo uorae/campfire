@@ -59,30 +59,32 @@ function Inventory() {
 
   return (
     <>
-      <div className="w-full max-w-md">
-        <a className="link link-hover"
+      <div>
+        <button className="!shadow-none btn-sm no-animation fixed top-4 left-4 hover:underline"
           onClick={() => navigate('/')}
         >
           ← back
-        </a>
+        </button>
 
-        <h1>inventory</h1>
-    
+
+        <h1 className="m-5">inventory</h1>
+
         {/* add item input */}
-        <div className="flex gap-2 mb-6">
-          <input
-            type="text"
-            placeholder="ingredient name"
-            className="input input-bordered w-full"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            // lets user press enter instead of clicking add
-            onKeyDown={e => e.key === 'Enter' && addItems()}
-          />
-          <button 
-            onClick={addItems}
-            disabled={loading}> + add </button>
-        </div>
+        <label className="join">
+        <input 
+          type="text" 
+          className="input join-item grow" 
+          placeholder="ingredient name"
+          value={input} 
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={e => e.key === 'Enter' && addItems()} 
+        />
+        <button
+          className={`btn join-item !rounded-l-none btn-soft btn-accent ${loading ? 'loading' : ''}`}
+          onClick={addItems}
+          disabled={loading}> + add 
+        </button>
+      </label>
 
         {/* ingredient list */}
         {items.length === 0 ? (
@@ -90,25 +92,29 @@ function Inventory() {
             your inventory is looking a little empty... add some ingredients to get started!
           </p>
         ) : (
-          <ul className="flex flex-col gap-2">
+          <ul className="list flex flex-col gap-2">
             {items.map(item => (
-              <li
-                key={item.id}
-                className="flex items-center justify-between bg-base-100 px-4 py-3 rounded-xl"
-              >
-                <span>{item.name}</span>
-                <button
-                  onClick={() => removeItem(item.id)}
-                  className="btn btn-sm btn-error"
-                >
-                  ×
-                </button>
+              <li key={item.id} className="list-row flex items-center justify-between">
+                  <span>{item.name}</span>
+                  <button
+                    onClick={() => removeItem(item.id)}
+                    className="btn btn-ghost btn-sm bg-none border-none text-base-content/30 hover:text-error hover:bg-error/10"
+                  >
+                    <svg className="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 7h16" />
+                      <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                      <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                      <path d="M10 12l4 4m0 -4l-4 4" />
+                    </svg>
+                  </button>
               </li>
             ))}
           </ul>
         )}
 
-        <button onClick={clearItems}> clear </button>
+        <button className="btn btn-soft btn-error" onClick={clearItems}>
+          clear
+        </button>
       </div>
 
     </>
