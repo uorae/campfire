@@ -26,7 +26,7 @@ export default function Recipes() {
   return (
     <div>
       <button className="!shadow-none btn-sm no-animation fixed top-4 left-4 hover:underline"
-        onClick={() => navigate('/cookbook')}
+        onClick={() => navigate('/')}
       >
         ← back
       </button>

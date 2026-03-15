@@ -30,7 +30,7 @@ export default function RecipeDetail() {
   return (
     <div className="flex flex-col items-center py-12 px-4">
       <button className="!shadow-none btn-sm no-animation fixed top-4 left-4 hover:underline"
-        onClick={() => navigate('/')}
+        onClick={() => navigate('/cookbook')}
       >
         ← back
       </button>
