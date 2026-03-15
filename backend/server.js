@@ -42,15 +42,17 @@ app.post('/pantry', (req, res) => {
   const ingredient_name = (req.body.ingredient_name).toLowerCase().trim();
 
   pool.query(
-    `INSERT INTO ingredients (name) VALUES ('${ingredient_name}')
+    `INSERT INTO ingredients (name) VALUES ($1)
       ON CONFLICT (name) DO UPDATE SET name = EXCLUDED.name
-      RETURNING id`
+      RETURNING id`,
+    [ingredient_name]
   )
   .then(result => {
     // post into pantry with returned ingredient id
     const ingredient_id = result.rows[0].id;
     return pool.query(
-      `INSERT INTO pantry_items (ingredient) VALUES ('${ingredient_id}') RETURNING *`
+      `INSERT INTO pantry_items (ingredient) VALUES ($1) RETURNING *`,
+      [ingredient_id]
     );
   })
   .then(result => res.status(200).json(result.rows[0]))
@@ -60,7 +62,8 @@ app.post('/pantry', (req, res) => {
 // DELETE /pantry/:id
 app.delete('/pantry/:id', (req, res) => {
   pool.query(
-    `DELETE FROM pantry_items WHERE id = ${req.params.id}`,
+    `DELETE FROM pantry_items WHERE id = $1`,
+    [req.params.id]
   )
   .then(() => res.status(204).send())
   .catch(err => res.status(500).json({ error: err.message }));
