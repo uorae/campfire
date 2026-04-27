@@ -92,6 +92,7 @@ function Inventory() {
             your inventory is looking a little empty... add some ingredients to get started!
           </p>
         ) : (
+          <>
           <ul className="list flex flex-col gap-2">
             {items.map(item => (
               <li key={item.id} className="list-row flex items-center justify-between">
@@ -110,11 +111,13 @@ function Inventory() {
               </li>
             ))}
           </ul>
+          <button className="btn btn-soft btn-error" onClick={clearItems}>
+            clear
+          </button>
+          </>
         )}
 
-        <button className="btn btn-soft btn-error" onClick={clearItems}>
-          clear
-        </button>
+
       </div>
 
     </>
