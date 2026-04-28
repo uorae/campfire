@@ -8,7 +8,7 @@ export default function Recipes() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    axios.get('http://localhost:3000/recipes')
+    axios.get(`${import.meta.env.API_URL}/recipes`)
       .then(res => setRecipes(res.data))
       .catch(err => console.error(err))
       .finally(() => setLoading(false))
