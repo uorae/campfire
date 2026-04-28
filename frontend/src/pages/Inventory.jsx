@@ -11,6 +11,7 @@ function Inventory() {
   const [loading, setLoading] = useState(false)
 
   const fetchItems = () => {
+    console.log(import.meta.env.API_URL);
     axios.get(`${import.meta.env.API_URL}/pantry`).then(response => {
       setItems(response.data)
     }).catch((err) => {
