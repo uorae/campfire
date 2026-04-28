@@ -14,24 +14,9 @@ const pool = new Pool({
 });
 
 const app = express();
-const allowed_origins = [ 'https://campfirecosy.netlify.app' ];
-
-app.use((req, res, next) => {
-
-  const origin = req.headers.origin;
-
-  if (allowed_origins.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
-  }
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-
-  next();
-});
+app.use(cors({
+    Access-Control-Allow-Origin: 'https://campfirecosy.netlify.app'
+}));
 app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
