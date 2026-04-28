@@ -15,7 +15,7 @@ const pool = new Pool({
 
 const app = express();
 app.use(cors({
-    Access-Control-Allow-Origin: 'https://campfirecosy.netlify.app'
+    origin: '*'
 }));
 app.use(express.json());
 
