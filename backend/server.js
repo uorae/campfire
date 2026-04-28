@@ -14,11 +14,11 @@ const pool = new Pool({
 });
 
 const app = express();
-var cors_options = {
-  origin: 'https://campfirecosy.netlify.app',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-app.use(cors(cors_options));
+app.use(cors({
+    origin: "https://campfirecosy.netlify.app",
+    credentials: true,
+    methods: ["POST", "GET", "PUT", "DELETE"],
+  }));
 app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
