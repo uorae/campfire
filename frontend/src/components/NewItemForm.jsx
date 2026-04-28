@@ -18,7 +18,7 @@ function NewItemForm (props) {
     e.preventDefault();
     try {
       console.log(name)
-      await axios.post(`${import.meta.env.API_URL}/pantry`, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/pantry`, {
         item_name: name,
         quantity: quantity
       });

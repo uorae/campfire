@@ -11,8 +11,8 @@ function Inventory() {
   const [loading, setLoading] = useState(false)
 
   const fetchItems = () => {
-    console.log(import.meta.env.API_URL);
-    axios.get(`${import.meta.env.API_URL}/pantry`).then(response => {
+    console.log(import.meta.env.VITE_API_URL);
+    axios.get(`${import.meta.env.VITE_API_URL}/pantry`).then(response => {
       setItems(response.data)
     }).catch((err) => {
       console.error(err)
@@ -28,7 +28,7 @@ function Inventory() {
 
     setLoading(true)
 
-    axios.post(`${import.meta.env.API_URL}/pantry`, {
+    axios.post(`${import.meta.env.VITE_API_URL}/pantry`, {
       ingredient_name: input
     }).then(() => {
       fetchItems();
@@ -41,7 +41,7 @@ function Inventory() {
   }
 
   const removeItem = (item_id) => {
-    axios.delete(`${import.meta.env.API_URL}/pantry/${item_id}`, {
+    axios.delete(`${import.meta.env.VITE_API_URL}/pantry/${item_id}`, {
     }).then(() => {
       fetchItems();
     }).catch((err) => {
@@ -50,7 +50,7 @@ function Inventory() {
   }
 
   const clearItems = () => {
-    axios.delete(`${import.meta.env.API_URL}/clear/pantry`, {
+    axios.delete(`${import.meta.env.VITE_API_URL}/clear/pantry`, {
     }).then(() => {      
       fetchItems();
     }).catch((err) => {
