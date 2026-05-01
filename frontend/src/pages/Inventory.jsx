@@ -62,20 +62,20 @@ function Inventory() {
     <>
       <div className="flex flex-col w-3/4 h-3/4 items-center pt-6">
 				{/* title */}
-				<div className="flex-1 justify-center items-center flex flex-col gap-12">
+				<div className="flex-1 justify-center items-center flex flex-col gap-12 w-full">
 					<h1 className="text-5xl lg:text-5xl md:text-5xl font-bold bonbon-regular">inventory</h1>
           {/* add item input */}
-          <label className="join">
+          <label className="join flex w-3/4 h-12 lg:w-1/2 lg:h-24">
             <input 
               type="text" 
-              className="input join-item grow" 
+              className="input join-item grow h-full lg:text-xl" 
               placeholder="ingredient name"
               value={input} 
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && addItems()} 
             />
             <button
-              className={`btn join-item !rounded-l-none btn-soft btn-accent ${loading ? 'loading' : ''}`}
+              className={`btn join-item h-full lg:text-xl !rounded-l-none btn-soft btn-accent ${loading ? 'loading' : ''}`}
               onClick={addItems}
               disabled={loading}> + add 
             </button>
@@ -83,7 +83,7 @@ function Inventory() {
 				</div>
       
         {/* ingredient list */}
-        <div className="flex-2">
+        <div className="flex-2 w-full">
           {items.length === 0 ? (
             <p className="text-base-content/50 text-center mt-12">
               your inventory is looking a little empty... add some ingredients to get started!

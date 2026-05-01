@@ -27,12 +27,12 @@ export default function Recipes() {
     <>
       <div className="flex flex-col w-3/4 h-3/4 items-center pt-6">
 				{/* title */}
-				<div className="flex-1 justify-center items-center flex flex-col">
+				<div className="flex-2 justify-center items-center flex flex-col">
 				  <h1 className="text-5xl lg:text-5xl md:text-5xl font-bold bonbon-regular">recipes</h1>
           <p className="lg:text-3xl m-10">choose your meal!</p>
         </div>
         {/* ingredient list */}
-        <div className="flex-2">
+        <div className="flex-3">
           {loading ? (
             <div className="flex justify-center mt-24">
               <span className="loading loading-spinner loading-lg" />
