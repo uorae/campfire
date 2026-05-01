@@ -2,11 +2,9 @@ import NavBar from './NavBar'
 
 export default function Layout({ children }) {
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="flex flex-col items-center h-screen">
             <NavBar />
-            <div className="flex-1 flex flex-col">
-                {children}
-            </div>
+            {children}
         </div>
     )
 }
