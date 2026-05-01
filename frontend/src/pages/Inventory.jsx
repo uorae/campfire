@@ -83,7 +83,7 @@ function Inventory() {
 				</div>
       
         {/* ingredient list */}
-        <div className="flex-2 w-full">
+        <div className="flex-2 w-full lg:text-xl">
           {items.length === 0 ? (
             <p className="text-base-content/50 text-center mt-12">
               your inventory is looking a little empty... add some ingredients to get started!
@@ -93,7 +93,7 @@ function Inventory() {
             <ul className="list flex flex-col gap-2">
               {items.map(item => (
                 <li key={item.id} className="list-row flex items-center justify-between">
-                    <span>{item.name}</span>
+                    <span> <p className="lg:text-xl">{item.name}</p></span>
                     <button
                       onClick={() => removeItem(item.id)}
                       className="btn btn-ghost btn-sm bg-none border-none text-base-content/30 hover:text-error hover:bg-error/10"
@@ -109,7 +109,7 @@ function Inventory() {
               ))}
             </ul>
             <button className="btn btn-soft btn-error" onClick={clearItems}>
-              clear
+              <p className="lg:text-xl">clear</p>
             </button>
             </>
           )}
